@@ -13,6 +13,10 @@ print()
 empty_env = pd.getenv("NON_EXISTENT_ENV")
 print("NON_EXISTENT_ENV: ", empty_env)
 
+print()
+current_dir = pd.pwd
+print("CURRENT_DIR: ", current_dir)
+
 main = rule {
 	true
 }

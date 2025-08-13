@@ -75,6 +75,12 @@ func (r *Root) Get(key string) (interface{}, error) {
 		// return &envVars{All: []string{"ENV1", "ENV2"}}, nil
 	case "now":
 		return &testTime{Time: time.Now()}, nil
+	case "pwd":
+		dir, err := os.Getwd()
+		if err != nil {
+			return nil, err
+		}
+		return &dir, nil
 	}
 
 	return nil, nil
