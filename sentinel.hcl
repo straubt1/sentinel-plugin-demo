@@ -3,6 +3,6 @@ import "plugin" "plugin-demo" {
 }
 
 policy "demo-plugin-demo" {
-  source            = "./policies/demo-plugin.sentinel"
+  source            = "./policies/plugin-demo.sentinel"
   enforcement_level = "advisory"
 }
