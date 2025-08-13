@@ -1,0 +1,18 @@
+import "plugin-demo" as pd
+
+all_envs = pd.getallenvs()
+for all_envs as k, v{
+	print(k, v)
+}
+
+print()
+single_env = pd.getenv("TMPDIR")
+print("TMPDIR: ", single_env)
+
+print()
+empty_env = pd.getenv("NON_EXISTENT_ENV")
+print("NON_EXISTENT_ENV: ", empty_env)
+
+main = rule {
+	true
+}
