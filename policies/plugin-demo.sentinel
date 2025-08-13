@@ -17,6 +17,10 @@ print()
 current_dir = pd.pwd
 print("CURRENT_DIR: ", current_dir)
 
+print()
+plan_json = pd.plan_json
+print("PLAN_JSON: ", plan_json)
+
 main = rule {
 	true
 }

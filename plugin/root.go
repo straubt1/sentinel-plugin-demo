@@ -81,8 +81,15 @@ func (r *Root) Get(key string) (interface{}, error) {
 			return nil, err
 		}
 		return &dir, nil
-	}
+	case "plan_json":
+		contents, err := os.ReadFile("../../subjects/schema.json")
+		if err != nil {
+			return nil, err
+		}
+		contentsStr := string(contents)
+		return &contentsStr, nil
 
+	}
 	return nil, nil
 }
 
