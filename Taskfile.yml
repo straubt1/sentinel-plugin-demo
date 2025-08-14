@@ -1,0 +1,19 @@
+version: '3'
+
+dotenv: ['.env', 'secrets/.env']
+
+vars:
+  AGENT_NAME: "tt-local"
+
+tasks:
+  plugin-build:
+    desc: Build the Sentinel Plugin for local and remote
+    cmds:
+      - |
+        GOOS=linux GOARCH=amd64 go build -o bin/sentinel-plugin-demo .
+        GOOS=darwin GOARCH=arm64 go build -o bin/sentinel-plugin-demo-darwin .
+  sentinel-test:
+    desc: Test the policy locally
+    cmds:
+      - |
+        sentinel test -verbose policies/plugin-demo.sentinel

@@ -1,0 +1,27 @@
+import "plugin-demo" as pd
+
+all_envs = pd.getallenvs()
+for all_envs as k, v {
+	print(k, v)
+}
+
+# Call a few functions and properties
+print()
+single_env = pd.getenv("HOSTNAME")
+print("HOSTNAME: ", single_env)
+
+print()
+empty_env = pd.getenv("NON_EXISTENT_ENV")
+print("NON_EXISTENT_ENV: ", empty_env)
+
+print()
+current_dir = pd.pwd
+print("CURRENT_DIR: ", current_dir)
+
+print()
+plan_json = pd.getfile("../../subjects/plan.json")
+print("PLAN_JSON: ", plan_json)
+
+main = rule {
+	true
+}
