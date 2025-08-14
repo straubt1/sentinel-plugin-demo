@@ -133,7 +133,7 @@ working_dir = pd.pwd
 
 This plugin is built using:
 
-- Go 1.21+
+- Go 1.23.4
 - [HashiCorp Sentinel SDK](https://github.com/hashicorp/sentinel-sdk)
 - [Task](https://taskfile.dev/) for build automation
 
