@@ -112,6 +112,10 @@ current_time = pd.now
 working_dir = pd.pwd
 ```
 
+### Example
+
+![](images/demo-example.png)
+
 ## Deployment
 
 1. Build the Linux binary: `task plugin-build`
