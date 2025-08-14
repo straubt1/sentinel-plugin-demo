@@ -2,7 +2,6 @@ package main
 
 import (
 	"sentinel-plugin-demo/plugin"
-	// "github.com/straubt1/sentinel-plugin-demo/plugin"
 
 	sdk "github.com/hashicorp/sentinel-sdk"
 	"github.com/hashicorp/sentinel-sdk/framework"

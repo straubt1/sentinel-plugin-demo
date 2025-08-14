@@ -18,6 +18,7 @@ func New() sdk.Plugin {
 	}
 }
 
+// Return structs
 type testTime struct {
 	Time    time.Time
 	Message string
@@ -27,9 +28,14 @@ type envVars struct {
 	All []string
 }
 
-// Func - Implement framework.Call interface
+// This is where we can add new functions
+// Example in Sentinel, key == "getallenvs":
+//
+// import "plugin-demo" as pd
+// pd.getallenvs()
 func (r *Root) Func(key string) interface{} {
 	switch key {
+	// Get all environment variables, return a map
 	case "getallenvs":
 		return func() interface{} {
 			envMap := make(map[string]string)
@@ -41,11 +47,22 @@ func (r *Root) Func(key string) interface{} {
 			}
 			return &envMap
 		}
+	// Get a specific environment variable, return its value or empty if not found
 	case "getenv":
 		return func(key string) interface{} {
 			value := os.Getenv(key)
 			return &value
 		}
+	case "getfile":
+		return func(path string) interface{} {
+			contents, err := os.ReadFile(path)
+			if err != nil {
+				return nil // File not found or inaccessible
+			}
+			contentsStr := string(contents)
+			return &contentsStr
+		}
+	// Test function, return current time and a message
 	case "test":
 		return func() interface{} {
 			return &testTime{Time: time.Now(), Message: "Test message"}
@@ -54,15 +71,14 @@ func (r *Root) Func(key string) interface{} {
 	return nil
 }
 
-// Required Implementation - not used
-func (r *Root) Configure(m map[string]interface{}) error {
-	return nil
-}
-
-// Required Implementation - not used
+// This is where we can add new properties
+// Example in Sentinel, key == "now":
+//
+// import "plugin-demo" as pd
+// pd.now
 func (r *Root) Get(key string) (interface{}, error) {
 	switch key {
-
+	// Get all environment variables as a property, return a map
 	case "envs":
 		envMap := make(map[string]string)
 		for _, env := range os.Environ() {
@@ -72,25 +88,23 @@ func (r *Root) Get(key string) (interface{}, error) {
 			}
 		}
 		return envMap, nil
-		// return &envVars{All: []string{"ENV1", "ENV2"}}, nil
+	// Get current time as a property
 	case "now":
 		return &testTime{Time: time.Now()}, nil
+	// Get current working directory as a property
 	case "pwd":
 		dir, err := os.Getwd()
 		if err != nil {
 			return nil, err
 		}
 		return &dir, nil
-	case "plan_json":
-		contents, err := os.ReadFile("../../subjects/plan.json")
-		if err != nil {
-			return nil, err
-		}
-		contentsStr := string(contents)
-		return &contentsStr, nil
-
 	}
 	return nil, nil
+}
+
+// Required Implementation - not used
+func (r *Root) Configure(m map[string]interface{}) error {
+	return nil
 }
 
 // Required Implementation - not used

@@ -5,9 +5,10 @@ for all_envs as k, v{
 	print(k, v)
 }
 
+# Call a few functions and properties
 print()
-single_env = pd.getenv("TMPDIR")
-print("TMPDIR: ", single_env)
+single_env = pd.getenv("HOSTNAME")
+print("HOSTNAME: ", single_env)
 
 print()
 empty_env = pd.getenv("NON_EXISTENT_ENV")
@@ -18,7 +19,7 @@ current_dir = pd.pwd
 print("CURRENT_DIR: ", current_dir)
 
 print()
-plan_json = pd.plan_json
+plan_json = pd.getfile("../../subjects/plan.json")
 print("PLAN_JSON: ", plan_json)
 
 main = rule {
