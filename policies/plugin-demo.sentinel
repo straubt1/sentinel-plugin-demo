@@ -1,7 +1,7 @@
 import "plugin-demo" as pd
 
 all_envs = pd.getallenvs()
-for all_envs as k, v{
+for all_envs as k, v {
 	print(k, v)
 }
 
